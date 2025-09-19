@@ -20,11 +20,17 @@ public class User {
     private String email;
     private String name;
     private String password;
+    private int activityScore = 0;
 
     @Builder
     public User(String email, String name, String password) {
         this.email = email;
         this.name = name;
         this.password = password;
+    }
+
+    // 활동 점수 적립
+    public void addActivityScore(int score) {
+        this.activityScore += score;
     }
 }

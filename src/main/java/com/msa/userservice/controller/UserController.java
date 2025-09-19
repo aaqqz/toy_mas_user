@@ -1,5 +1,6 @@
 package com.msa.userservice.controller;
 
+import com.msa.userservice.dto.AddActivityScoreRequest;
 import com.msa.userservice.dto.SignUpRequest;
 import com.msa.userservice.dto.UserResponse;
 import com.msa.userservice.service.UserService;
@@ -31,5 +32,11 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserResponse>> getUsersByIds(@RequestParam List<Long> ids) {
         return ResponseEntity.ok(userService.getUsersByIds(ids));
+    }
+
+    @PostMapping("/activity-score/add")
+    public ResponseEntity<Void> addActivityScore(@RequestBody AddActivityScoreRequest addActivityScoreRequest) {
+        userService.addActivityScore(addActivityScoreRequest);
+        return ResponseEntity.noContent().build();
     }
 }
