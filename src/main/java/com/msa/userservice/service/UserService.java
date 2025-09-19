@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -30,5 +32,13 @@ public class UserService {
                 .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
 
         return UserResponse.of(user);
+    }
+
+    public List<UserResponse> getUsersByIds(List<Long> ids) {
+        List<User> users = userRepository.findAllById(ids);
+
+        return users.stream()
+                .map(UserResponse::of)
+                .toList();
     }
 }
