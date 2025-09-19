@@ -1,6 +1,5 @@
-package com.msa.userservice.repository;
+package com.msa.userservice.domain;
 
-import com.msa.userservice.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

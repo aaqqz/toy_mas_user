@@ -1,13 +1,11 @@
 package com.msa.userservice.controller;
 
 import com.msa.userservice.dto.SignUpRequest;
+import com.msa.userservice.dto.UserResponse;
 import com.msa.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
@@ -21,5 +19,10 @@ public class UserController {
         userService.signUp(signUpRequest);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("{userId}")
+    public ResponseEntity<UserResponse> get(@PathVariable Long userId) {
+        return ResponseEntity.ok(userService.get(userId));
     }
 }
